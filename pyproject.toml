@@ -6,10 +6,38 @@ authors = ["Israël Hallé <israel.halle@flare.io>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
+h2 = ">=4.1.0"
+grpclib = ">=0.4.7"
+protobuf = ">=3.20.0"
+multidict = ">=6.0.4"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
+grpcio = ">=1.60.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+select = ["COM", "E", "F", "I", "ICN", "ISC", "Q", "PIE"]
+
+[tool.ruff.isort]
+force-single-line = true
+lines-after-imports = 2
+lines-between-types = 1
+force-wrap-aliases = true
+combine-as-imports = true
+
+[tool.mypy]
+check_untyped_defs = true
+disallow_incomplete_defs = true
+disallow_untyped_defs = true
+disallow_untyped_calls = true
+namespace_packages = true
+
+[[tool.mypy.overrides]]
+module = [
+  "h2.*",
+]
+ignore_missing_imports = true

@@ -1,7 +1,38 @@
 [GLOBAL]
+pythonpath = ["%(buildroot)s/pants/plugins"]
 pants_version = "2.20.0dev1"
 backend_packages.add = [
+  "pants.backend.build_files.fix.deprecations",
+  "pants.backend.build_files.fmt.black",
+  "extra.codegen.protobuf.python",
   "pants.backend.python",
+  "pants.backend.python.lint.docformatter",
   "pants.backend.experimental.python.lint.ruff",
   "pants.backend.python.typecheck.mypy",
 ]
+
+[python]
+interpreter_constraints = "==3.11.6"
+enable_resolves = true
+
+[source]
+root_patterns = ["/", "/src", "/example/src"]
+
+[python-bootstrap]
+search_path = ["<PYENV>", "<PATH>"]
+
+[python.resolves]
+grpclib = "pants/3rdparty/python/grpclib.lock"
+ruff = "pants/3rdparty/python/ruff.lock"
+python-default = "pants/3rdparty/python/default.lock"
+
+[generate-lockfiles]
+diff = true
+
+[python-infer]
+use_rust_parser = true
+
+[ruff]
+install_from_resolve = "ruff"
+requirements = ["//pants/3rdparty/python:ruff"]
+config = "pyproject.toml"

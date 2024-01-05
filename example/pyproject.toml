@@ -1,0 +1,13 @@
+[tool.poetry]
+name = "rgrpc-example"
+version = "0.1.0"
+description = "rgrpc examples"
+authors = ["Israël Hallé <israel.halle@flare.io>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+rgrpc = {path="..", develop=true}
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
