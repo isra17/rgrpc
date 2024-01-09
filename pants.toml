@@ -1,10 +1,12 @@
 [GLOBAL]
-pythonpath = ["%(buildroot)s/pants/plugins"]
 pants_version = "2.20.0dev1"
+plugins = [
+  "flare-protobuf-plugin==0.1.0"
+]
 backend_packages.add = [
   "pants.backend.build_files.fix.deprecations",
   "pants.backend.build_files.fmt.black",
-  "extra.codegen.protobuf.python",
+  "flare_protobuf_plugin",
   "pants.backend.python",
   "pants.backend.python.lint.docformatter",
   "pants.backend.experimental.python.lint.ruff",
